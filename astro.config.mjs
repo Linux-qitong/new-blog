@@ -21,8 +21,8 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://linux-qitong.github.io/",
-  base: "/new-blog",
+  site: "https://newblog.linux-qitong.top",
+  base: "/",
   trailingSlash: "always",
   integrations: [
     tailwind(
