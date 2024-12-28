@@ -1,9 +1,38 @@
-# About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
+# 关于
 
-::github{repo="saicaca/fuwari"}
+## 您好，很高兴认识您👋
+我叫青稚
+是一名学生、独立开发者、灵墨社区管理员、志海融新成员、博主
+所在位置: 中国，吉林省
+出生日期: 2009年
+学校: 吉林某大学
+专业: 新能源
 
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+## 性格
+指挥官
+ENTJ-T
+
+## 座右铭
+越努力， 越幸运.
+
+ ## 为什么建站？
+    <br>创建这个站的时候，想要就是能够有一个自己能够<b>积累知识、积累兴趣</b>的地方.和他人分享，会让这些成为积累和沉淀.如果能够帮助到更多的人，帮助更多人解决问题，那一定是非常棒的事情.
+    <br>
+    与大多数垂直类的技术博客不同，这里的种类会非常的繁杂，有<b>技能的教程干货</b>、有<b>生活上的吐槽和妙招</b>、有<b>话题上的思考和想法</b>.一般我研究什么、发现了什么都会分享在这里.
+    <br>
+    这些就是创造这个小站的本意，<b>也是我分享生活的方式</b>.有幸能和您相遇在这里，相信我们能共同留下一段美好记忆.
+    <br>
+
+## 捐赠
+
+感谢赞赏的人，因为您们，让我感受到写博客这件事情能够给您们创造了价值.这会让我在这条路上走得更远.
+
+    姓名: 晚秋
+    金额: 50
+    时间: 2024-10-16
+    姓名: 花雨落逝
+    金额: 14
+    时间: 2024-11-24
+    姓名: 阿尼樱
+    金额: 1
+    时间: 2024-12-06
