@@ -1,0 +1,140 @@
+---
+title: 编译deb内核
+published: 2023-06-25 12:20:17
+description: ''
+image: ''
+tags: [Linux, debian]
+category: '系统'
+draft: false 
+---
+
+# 1.准备
+
+## 如果配置高可以考虑Vbox编译，话不多说，开始教程。
+1.开启源码仓库
+为了可以使用 apt build-dep linux 自动安装编译所需的依赖，需要先为 apt 配置源码仓库
+
+1.2编辑 /etc/apt/sources.list<!-- more -->，有些发行版（如Ubuntu）默认将 deb-src 开头的源码仓库注释掉了，只需要取消注释就可以了；而UOS默认没有源码仓库，所以UOS要编译内核得添加源码仓库：
+
+``` bash
+echo "deb-src https://home-packages.chinauos.com/home plum main contrib non-free" >> /etc/apt/sources.list
+```
+
+1.3编辑**/etc/apt/sources.list**后
+输入：
+
+``` bash
+sudo apt update
+```
+
+1.4安装所需依赖,输入：
+
+``` bash
+sudo apt build-dep -y linux 
+```
+
+# 2.开始编译
+
+2.1浏览器下载内核源码，
+也可以安装 wget 下载内核源码包
+输入：
+
+``` bash
+sudo apt install -y wget
+```
+
+2.2自动下载编译所需的依赖执行命令
+
+输入：
+``` bash
+sudo apt build-dep -y linux
+```
+
+2.3下载需要的源码
+
+输入：
+``` bash
+wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.3.1.tar.xz 
+# wget下载方式，浏览器下载就不过多描述了
+```
+
+2.4解压文件，这里用命令解压（也可以用压缩软件解压）
+输入：
+
+``` bash
+tar -xf linux-6.3.1.tar.xz
+```
+
+2.5进入解压目录，也可以用文件管理打开目录后，打开终端
+输入：
+
+``` bash
+cd linux-6.3.1
+```
+
+2.6复制内核配置文件
+输入：
+
+``` bash
+cp /boot/config-"$(uname -r)" .config
+```
+2.7编译deb
+
+``` bash
+make deb-pkg -j4 # 根据自己CPU线程数修改j8，j11等。
+```
+
+注意：
+
+Y： 模块驱动编译到内核中，启动时自动加载
+
+N： 空格:表示该功能不编译到内核中，即新的内核将不支持该功能
+
+M：模块会被编译，但是不会被编译到内核中，只是生成.o文件，我们可以收集这些.o文件做到linux的文件系统中，然后用insmod实现动态加载
+
+2.8我们只需要 linux-headers 和 linux-image 开头的两个 deb 文件，名字中带有 dbg，是调试内核用的
+
+2.9双击 deb 文件安装或输入：
+
+``` bash
+sudo dpkg -i *.deb 安装
+```
+# 3.补充
+
+3.1如果遇到缺少git仓库，在编译内核目录
+输入以下命令：
+
+``` bash
+sudo apt install git
+
+# 注已有git，则不用安装
+
+git init
+
+git add .
+
+git commit -m "1"
+
+```
+
+3.2如果编译快完成提示zstd报错，咱们不要慌
+输入：
+
+``` bash
+sudo apt install zstd
+```
+
+之后重新输入命令编译就可以了，不用担心之前的编译数据丢失。
+
+
+3.3论坛建议：
+
+DebuggerX：
+
+1.禁用DEBUG_INFO可以极大减少编译所需的时间和空间，也就是避免生成那个很大的dbg.deb。
+
+2.可以利用github action去自动化编译，具体可以参考我的这篇博客[利用 GitHub Actions 自动构建 Linux 内核为 deb 包](https://www.debuggerx.com/2021/08/17/Using-github-actions-to-build-kernel-deb-packages/)。
+
+fuuko：
+其实配置低也可以用虚拟化环境，把vmbox换成docker就行了，然后拉debian的镜像。
+
