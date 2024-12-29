@@ -97,8 +97,8 @@ export const commentConfig: CommentConfig = {
     theme: 'light',
     lang: 'zh-CN',
     loading: 'lazy',
-  // },
+  },
   // twikoo: {
   //   envId: 'https://twikoo-tau-flame.vercel.app',
   // },
-// }
+}
