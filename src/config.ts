@@ -41,12 +41,13 @@ export const navBarConfig: NavBarConfig = {
   links: [
     LinkPreset.Home,
     LinkPreset.Archive,
+    LinkPreset.Link,  
     LinkPreset.About,
-    {
-      name: 'GitHub',
-      url: 'https://github.com/saicaca/fuwari',     // Internal links should not include the base path, as it is automatically added
-      external: true,                               // Show an external link icon and will open in a new tab
-    },
+    // {
+      // name: 'GitHub',
+      // url: 'https://github.com/saicaca/fuwari',     // Internal links should not include the base path, as it is automatically added
+      // external: true,                               // Show an external link icon and will open in a new tab
+    // },
   ],
 }
 
@@ -78,3 +79,26 @@ export const licenseConfig: LicenseConfig = {
   name: 'CC BY-NC-SA 4.0',
   url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
 }
+
+// export const commentConfig: CommentConfig = {
+  // disqus: {
+  //  shortname: 'fuwari',
+  // },
+  // giscus: {
+  //   repo: 'moeyua/fuwari',
+  //   repoId: 'R_kgDOKy9HOQ',
+  //   category: 'General',
+  //   categoryId: 'DIC_kwDOKy9HOc4CegmW',
+  //   mapping: 'title',
+  //   strict: '0',
+  //   reactionsEnabled: '1',
+  //   emitMetadata: '1',
+  //   inputPosition: 'top',
+  //   theme: 'light',
+  //   lang: 'zh-CN',
+  //   loading: 'lazy',
+  // },
+  // twikoo: {
+  //   envId: 'https://twikoo-tau-flame.vercel.app',
+  // },
+// }
