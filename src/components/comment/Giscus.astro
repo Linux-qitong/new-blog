@@ -8,24 +8,83 @@ if (!commentConfig || !commentConfig.giscus) {
 const giscus = commentConfig.giscus
 ---
 
-<giscus-widget
-  id="comments"
-  repo={giscus.repo}
-  repoId={giscus.repoId}
-  category={giscus.category}
-  categoryId={giscus.categoryId}
-  mapping={giscus.mapping}
-  term={giscus.term}
-  strict={giscus.strict}
-  reactionsEnabled={giscus.reactionsEnabled}
-  emitMetadata={giscus.emitMetadata}
-  inputPosition={giscus.inputPosition}
-  theme={giscus.theme}
-  lang={giscus.lang}
-  loading={giscus.loading}
->
-</giscus-widget>
+<div id="comments" class="w-full"></div>
 
 <script>
-  import 'giscus'
+  import 'giscus';
+
+  // 获取 localStorage 中 theme 的值
+  function getSavedTheme() {
+    return window.localStorage.getItem('theme');
+  }
+
+  // 获取系统主题
+  function getSystemTheme() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  // 初始化主题
+  function initializeTheme() {
+    const theme = getSavedTheme() || getSystemTheme();
+    document.documentElement.setAttribute('data-theme', theme);
+    return theme;
+  }
+
+  // 监听主题变化
+  function observeThemeChanges(callback) {
+    const observer = new MutationObserver(() => {
+      const theme = getSavedTheme() || getSystemTheme();
+      document.documentElement.setAttribute('data-theme', theme);
+      callback(theme);
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return observer;
+  }
+
+  // 初始化评论组件
+  function initializeComments(theme) {
+    const container = document.getElementById('comments');
+
+    const giscusConfig = {
+      id: 'comments',
+      repo: '${giscus.repo}',
+      repoId: '${giscus.repoId}',
+      category: '${giscus.category}',
+      categoryId: '${giscus.categoryId}',
+      mapping: '${giscus.mapping}',
+      term: '${giscus.term}',
+      strict: '${giscus.strict}',
+      reactionsEnabled: '${giscus.reactionsEnabled}',
+      emitMetadata: '${giscus.emitMetadata}',
+      inputPosition: '${giscus.inputPosition}',
+      theme: theme,
+      lang: '${giscus.lang}',
+      loading: '${giscus.loading}'
+    };
+
+    const giscusWidget = document.createElement('giscus-widget');
+    for (const [key, value] of Object.entries(giscusConfig)) {
+      giscusWidget.setAttribute(key, value);
+    }
+
+    container.appendChild(giscusWidget);
+  }
+
+  // 初始化
+  const initialTheme = initializeTheme();
+  initializeComments(initialTheme);
+  observeThemeChanges((newTheme) => {
+    // 移除旧的 giscus-widget
+    const oldWidget = document.querySelector('giscus-widget');
+    if (oldWidget) {
+      oldWidget.remove();
+    }
+    // 初始化新的 giscus-widget
+    initializeComments(newTheme);
+  });
 </script>
