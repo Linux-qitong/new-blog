@@ -98,7 +98,7 @@
     "startTime": "2023-03-15T09:00:00Z"
   },
   "twikoo": {
-    "envId": "https://comments.linux-qitong.top/.netlify/functions/twikoo",
+    "envId": "",
     "region": ""
   },
   "sponsor": {
